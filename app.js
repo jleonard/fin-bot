@@ -19,6 +19,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://finb.herokuapp.com/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
     models.user.findOrCreate({ googleId: profile.id }, function (err, user) {
       console.log('user', user);
       return done(err, user);
