@@ -9,8 +9,8 @@ var Models = function(db){
   var stockModel = require('./stock')(db);
   var portfolioModel = require('./portfolio')(db);
   return{
-    investment: investmentModel,
-    portfolio: stockModel,
+    stock: stockModel,
+    portfolio: portfolioModel,
     user: userModel
   }
 }
@@ -18,16 +18,13 @@ var Models = function(db){
 module.exports = function(){
   var db = mongoose.createConnection(config.MLAB.uri,config.MLAB.options);
   db.on('error',function(err){
-    console.log('Mongoose error');
+    console.log('Mongoose error ',err);
   });
   db.once('open',function(){
     console.log('DB connection established');
-    db.db.collectionNames(function(error,names){
-      if(error){
-        // TODO log
-      }else{
-        console.log(names);
-      }
+    db.db.listCollections({name: "shouldCorrectlyRetrievelistCollections"}).toArray(function(_err, items) {
+      if(_err){}
+      console.log(items);
     });
   });
   return new Models(db);
