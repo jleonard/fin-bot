@@ -15,7 +15,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 passport.use(new GoogleStrategy({
     clientID: config.GOOGLE.clientId,
     clientSecret: config.GOOGLE.secret,
-    callbackURL: "http://www.finb.herokuapp.com/auth/google/callback"
+    callbackURL: "http://finb.herokuapp.com/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
