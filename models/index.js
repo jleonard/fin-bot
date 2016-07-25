@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var config = require('../config');
 
 var Models = function(db){
+  console.log('in models');
   var userModel = require('./user')(db);
   var stockModel = require('./stock')(db);
   var portfolioModel = require('./portfolio')(db);
