@@ -6,7 +6,7 @@ var config = require('../config');
 var Models = function(db){
   var userModel = require('./user')(db);
   var stockModel = require('./stock')(db);
-  var personModel = require('./person')(db);
+  var portfolioModel = require('./portfolio')(db);
   return{
     investment: investmentModel,
     portfolio: stockModel,
