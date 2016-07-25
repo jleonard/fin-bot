@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-heroku logs --source finb --tail
+heroku logs --app finb --tail
