@@ -38,5 +38,7 @@ exports.GOOGLE = {
 }
 
 exports.MLAB = {
-  uri : 'mongodb://ig88:6fuck6@ds029735.mlab.com:29735/heroku_5ktllzt8';
+  uri : 'mongodb://ig88:6fuck6@ds029735.mlab.com:29735/heroku_5ktllzt8',
+  options: { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } }
 }
