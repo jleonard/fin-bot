@@ -4,18 +4,18 @@ var mongoose = require('mongoose');
 var config = require('../config');
 
 var Models = function(db){
-  var portfolioModel = require('./portfolio')(db);
+  var userModel = require('./user')(db);
   var stockModel = require('./stock')(db);
   var personModel = require('./person')(db);
   return{
     investment: investmentModel,
     portfolio: stockModel,
-    person: personModel
+    user: userModel
   }
 }
 
 module.exports = function(){
-  var db = mongoose.createConnection(config.MONGOLAB_URI,config.MONGOOSE_OPTIONS);
+  var db = mongoose.createConnection(config.MLAB.uri,config.MLAB.options);
   db.on('error',function(err){
     console.log('Mongoose error');
   });

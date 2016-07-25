@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var models = require('./models');
 
 var config = require('./config');
 var passport = require('passport');
@@ -18,7 +19,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://finb.herokuapp.com/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    models.user.findOrCreate({ googleId: profile.id }, function (err, user) {
       console.log('user', user);
       return done(err, user);
     });

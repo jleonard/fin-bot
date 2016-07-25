@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var findOrCreate = require('mongoose-findorcreate');
 var Schema   = mongoose.Schema;
 
 module.exports = function(db){
@@ -11,5 +12,6 @@ module.exports = function(db){
     email : String,
     phone : String
   });
-  return db.model('Person',PersonSchema);
+  PersonSchema.plugin(findOrCreate);
+  return db.model('User',PersonSchema);
 }

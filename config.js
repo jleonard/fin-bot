@@ -36,3 +36,7 @@ exports.GOOGLE = {
   clientId : '130267583926-9chkoqnv1npjs9l618hqrfmj17pt3oal.apps.googleusercontent.com',
   secret: 'gZF0VWvgXwsbHBKp-X5Aj8_E'
 }
+
+exports.MLAB = {
+  uri : 'mongodb://ig88:6fuck6@ds029735.mlab.com:29735/heroku_5ktllzt8';
+}
