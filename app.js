@@ -12,6 +12,7 @@ var models = require('./models/index')();
 var config = require('./config');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var sha1 = require('sha1');
 
 passport.use(new GoogleStrategy({
     clientID: config.GOOGLE.clientId,
@@ -20,8 +21,8 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log(profile);
-    models.user.findOrCreate({ googleId: profile.id }, function (err, user) {
-      console.log('user', user);
+    var id = sha1(profile.id + profile.name.givenName + profile.name.familyName);
+    models.user.findOrCreate({ id: id, familyName: profile.name.familyName, givenName: profile.name.givenName }, function (err, user) {
       return done(err, user);
     });
   }
