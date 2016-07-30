@@ -17,9 +17,7 @@ var fields = [
 
 
 router.get('/', function(req, res, next) {
-  console.log("user is");
-  console.log(req.user);
-  res.render('quote', { title: 'Express' });
+  res.render('quote', { title: 'Express', icon:req.user.icon });
 });
 
 router.get('/:id', function(req, res, next){

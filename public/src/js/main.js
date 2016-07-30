@@ -1,7 +1,13 @@
 var jazzicon = require('jazzicon');
 
-var body = document.querySelector('body')
-for(var i = 0; i < 60; i++) {
-  var el = jazzicon(100, Math.round(Math.random() * 10000000))
-  body.appendChild(el)
-}
+
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var icons = document.querySelectorAll('.user-icon');
+    Array.prototype.forEach.call(icons, function(el, i){
+      var num = parseInt( el.getAttribute('data-icon'), 10);
+      var icon = jazzicon(32, num);
+      el.appendChild(icon);
+    });
+  }); 
+})();
