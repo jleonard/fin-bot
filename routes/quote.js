@@ -17,6 +17,7 @@ var fields = [
 
 
 router.get('/', function(req, res, next) {
+  console.log('quote says user is ',req.user);
   res.render('quote', { title: 'Express', icon:req.user.icon });
 });
 
