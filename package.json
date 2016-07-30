@@ -27,6 +27,7 @@
     "passport-github": "^1.1.0",
     "passport-google-oauth": "^1.0.0",
     "serve-favicon": "~2.3.0",
-    "sha1": "^1.1.1"
+    "sha1": "^1.1.1",
+    "yahoo-finance": "^0.2.12"
   }
 }
