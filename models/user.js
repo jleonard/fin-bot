@@ -11,7 +11,8 @@ module.exports = function(db){
     givenName: String,
     familyName: String,
     email : String,
-    phone : String
+    phone : String,
+    icon: String
   });
   PersonSchema.plugin(findOrCreate);
   return db.model('User',PersonSchema);

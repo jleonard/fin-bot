@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -16,6 +17,7 @@ var config = require('./config');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var sha1 = require('sha1');
+var _ = require('lodash');
 
 passport.use(new GoogleStrategy({
     clientID: config.GOOGLE.clientId,
@@ -24,8 +26,9 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log(profile);
+    var icon = _.random(1,999999999);
     var id = sha1(profile.id + profile.name.givenName + profile.name.familyName);
-    models.user.findOrCreate({ id: id, familyName: profile.name.familyName, givenName: profile.name.givenName }, function (err, user) {
+    models.user.findOrCreate({ id: id, familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, function (err, user) {
       return done(err, user);
     });
   }
@@ -57,6 +60,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'power jam', cookie:{} }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -71,7 +75,6 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log('call back syas ',req.user);
     res.redirect('/quote');
 });
 
