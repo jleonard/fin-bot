@@ -71,6 +71,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
+    console.log('call back syas ',req.user);
     res.redirect('/quote');
 });
 
