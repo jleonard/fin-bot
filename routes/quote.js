@@ -17,6 +17,8 @@ var fields = [
 
 
 router.get('/', function(req, res, next) {
+  console.log("user is");
+  console.log(req.user);
   res.render('quote', { title: 'Express' });
 });
 
