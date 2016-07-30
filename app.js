@@ -71,11 +71,14 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/dashboard.html');
+    res.redirect('/quote');
 });
 
-app.get('/test', passport.authenticate('google', { successRedirect: '/quote',
-                                                    failureRedirect: '/login' }));
+app.get('/test', passport.authenticate('google', 
+  { 
+    scope: ['https://www.googleapis.com/auth/plus.login'],
+    successRedirect: '/quote',
+    failureRedirect: '/login' }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
