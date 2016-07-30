@@ -1,9 +1,9 @@
 var parse = require('csv-parse');
 var fs = require('fs');
 
-var nyse_csv = fs.readFileSync('./data/nyse.csv');
-var nasdaq_csv = fs.readFileSync('./data/nasdaq.csv');
-var amex_csv = fs.readFileSync('./data/amex.csv');
+var nyse_csv = fs.readFileSync('../data/nyse.csv');
+var nasdaq_csv = fs.readFileSync('../data/nasdaq.csv');
+var amex_csv = fs.readFileSync('../data/amex.csv');
 
 var stocks = [];
 

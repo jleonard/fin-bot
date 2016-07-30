@@ -1,4 +1,5 @@
 var express = require('express');
+var engine = require('ejs-mate');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,6 +8,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var quotes = require('./routes/quote');
+
 var models = require('./models/index')();
 
 var config = require('./config');
@@ -40,6 +43,8 @@ passport.deserializeUser(function(id, done) {
 
 var app = express();
 
+app.engine('ejs', engine);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -57,6 +62,7 @@ app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/quote', quotes);
 
 // auth
 app.get('/auth/google',
@@ -67,6 +73,9 @@ app.get('/auth/google/callback',
   function(req, res) {
     res.redirect('/dashboard.html');
 });
+
+app.get('/test', passport.authenticate('google', { successRedirect: '/quote',
+                                                    failureRedirect: '/login' }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
