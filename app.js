@@ -28,7 +28,7 @@ passport.use(new GoogleStrategy({
     console.log(profile);
     var icon = _.random(1,999999999);
     var id = sha1(profile.id + profile.name.givenName + profile.name.familyName);
-    models.user.findOrCreate({ id: profile.id, familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, function (err, user) {
+    models.user.findOrCreate({ id: mongoose.Types.ObjectId(), familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, function (err, user) {
       return done(err, user);
     });
   }
