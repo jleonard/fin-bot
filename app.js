@@ -18,6 +18,7 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var sha1 = require('sha1');
 var _ = require('lodash');
+var mongoose = require('mongoose');
 
 passport.use(new GoogleStrategy({
     clientID: config.GOOGLE.clientId,
