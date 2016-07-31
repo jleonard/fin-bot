@@ -10,8 +10,8 @@ module.exports = function(db){
     uid: {type:String, unique:true},
     givenName: String,
     familyName: String,
-    email : String,
-    phone : String,
+    email : {type: String, default: '-'},
+    phone :{type: String, default: '-'},
     icon: String
   });
   PersonSchema.plugin(findOrCreate);
