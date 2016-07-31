@@ -30,7 +30,7 @@ passport.use(new GoogleStrategy({
     var icon = _.random(1,999999999);
     var id = sha1(profile.id + profile.name.givenName + profile.name.familyName);
     //models.user.findOrCreate({ id: mongoose.Types.ObjectId(id), familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, function (err, user, created) {
-    models.user.findOrCreate({ familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, function (err, user, created) {
+    models.user.findOrCreate({ uid: id, familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, function (err, user, created) {
       console.log('user created ',created);
       return done(err, user);
     });
