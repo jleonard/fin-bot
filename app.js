@@ -29,7 +29,7 @@ passport.use(new GoogleStrategy({
     console.log(profile);
     var icon = _.random(1,999999999);
     var id = sha1(profile.id + profile.name.givenName + profile.name.familyName);
-    models.user.findOrCreate({ id: mongoose.Types.ObjectId(icon.toString()), familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, function (err, user, created) {
+    models.user.findOrCreate({ id: mongoose.Types.ObjectId(id), familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, function (err, user, created) {
       console.log('user created ',created);
       return done(err, user);
     });
