@@ -35,7 +35,7 @@ passport.use(new GoogleStrategy({
       {uid: id, familyName: profile.name.familyName, givenName: profile.name.givenName, icon: icon }, 
       {upsert: true}, 
       function(err,doc){
-        return done(err, user);
+        return done(err, doc);
       }
     );
     /*
